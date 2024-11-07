@@ -1,3 +1,7 @@
+// Verificar licensa do codigo antes de modificar e compartilhar...
+// GitHub:  NetoRL22
+// Linkedin:  roberto-ledesma-neto
+
 // essa constante define razao da progressão geométrica entre as frequencias das notas musicais
 const double razao = 1.05946320547;
 // essa constante define de quanto em quanto do valor recebido do potenciometro que uma nota musical será mudada (640 que é o total do meu potenciometro / 43)
@@ -164,3 +168,5 @@ double getPitch(){
     return 42;
   }
 }
+
+// Ass: Roberto Ledesma Neto
