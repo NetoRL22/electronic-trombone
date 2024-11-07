@@ -1,25 +1,39 @@
+// essa constante define razao da progressão geométrica entre as frequencias das notas musicais
 const double razao = 1.05946320547;
+// essa constante define de quanto em quanto do valor recebido do potenciometro que uma nota musical será mudada (640 que é o total do meu potenciometro / 43)
 const double fracaoPotenciometro = 14.8837209302;
+// essa constante define qual a frequencia da nota mi1, que é a primeira do nosso instrumento
+const double miUm = 82.406876;
 
+// essa funcao é executada sempre no inicio da execucao do arduino
 void setup() {
+  // inicia o monitor serial
   Serial.begin(9600);
+  // botão
   pinMode(2, INPUT_PULLUP);
+  // buzzer
   pinMode(9, OUTPUT);
+  // potenciometro
   pinMode(A1, INPUT);
 }
 
+// essa funcao é executada repetidamente enquanto o arduino estiver ligado
 void loop() {
+  // identifica se o botão NÃO está pressionado
   if(digitalRead(2)){
       noTone(9);
-  }
+  } // identifica se o botão ESTÁ pressionado
   else{
-    tone(9, 82.406876 * pow(1.05946320547, getPitch()));
+    // gera barulho no buzzer com base na frequencia da mi multiplicado pela razao da pg das notas elevado a qual das 43 notas o potenciometro indica (literalmete um an de PG)
+    tone(9, miUm * pow(razao, getPitch()));
   }
-// Serial.println(analogRead(A1));
+// registra a acao do potenciometro para Debugging
 Serial.println(getPitch());
 }
 
+// funcao executada para obter em que nota o potenciometro indica
 double getPitch(){
+  // verifica se o valor lido na porta analogica do potenciometro corresponde a cada uma das notas existentes
   if(analogRead(A1)<fracaoPotenciometro*1){
     return 0;
   }
